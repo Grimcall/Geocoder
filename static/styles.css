@@ -1,0 +1,183 @@
+
+@import url('https://fonts.googleapis.com/css?family=Poppins:200i,400&display=swap');
+
+*, *::before, *::after{
+    box-sizing: border-box;
+}
+
+body, html{
+
+    height: 100%;
+    margin: 0;
+
+} 
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.5;
+    margin: 0;
+    color: white;
+    
+  }
+
+h1, h3{    
+    text-shadow: 2px 2px #0000001f;
+
+}
+
+h3{
+    font-weight: lighter;
+    font-style: italic;
+    
+}
+
+p{
+font-weight: 100;
+
+}
+.bg-image{
+    content: '';
+   
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+
+    background: var(--color-darkblue);
+    background-image: url("../_img/bg.jpg");
+
+    position: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.filter-bg{
+
+    background: rgba(151, 162, 233, 0.5);
+    
+    backdrop-filter: blur(3px);
+    
+    position: fixed;
+    
+    height: 100%;
+    width: 100%;
+
+    z-index: 1;
+
+} 
+
+  
+
+.container{
+   
+    color: white;    
+
+    /*
+    position: absolute;
+    left: 50%;
+    top: 45%;   
+    transform: translate(-50%, -50%); 
+    z-index: 2; */
+
+    margin: 3.125rem auto 0 auto;
+    width: 50%; 
+    
+    text-align: center;
+
+} 
+
+
+.form-container {
+    margin: 0 auto 1.25rem auto;
+    padding: 2.5rem 2.625rem;
+    
+    background-color: rgba(8, 9, 32, 0.507);
+    border-radius: 10px;
+    border: 0.5px solid #dbdbdb88;
+    color: white;    
+    
+    width: 90%;
+  }
+
+.form-input{
+    margin-bottom: 20px;
+}
+
+.form-input label{
+    text-align: left;
+
+}
+
+.form-input input{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    
+    padding: 15px;
+    width: 100%;
+    
+    border-radius: 0.4rem;
+
+    
+
+}
+
+.form-input input:focus{
+    box-shadow: 0 0 0 0.2rem rgba(104, 177, 255, 0.25);
+    transition-delay: 1s;
+    transition: 3s ease-in-out;
+
+}
+
+
+button {
+    width: 100%;
+    padding: 15px;
+        
+    background-color: rgb(132, 119, 247);
+    border-color: rgb(132, 119, 247);
+    color: white;
+    font-weight: bold;
+
+}
+
+label{
+    display: block;     
+}
+
+a:link {
+    text-decoration: none;
+  }
+  
+  a:visited {
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  a:active {
+    text-decoration: underline;
+
+  }
+ /* unvisited link */
+ a:link {
+    color: rgb(245, 106, 106);
+  }
+  
+  /* visited link */
+  a:visited {
+    color: rgb(66, 235, 66);
+  }
+  
+  /* mouse over link */
+  a:hover {
+    color: rgb(248, 167, 208);
+  }
+  
+  /* selected link */
+  a:active {
+    color: rgb(141, 141, 245);
+  } 
