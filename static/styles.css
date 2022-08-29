@@ -45,7 +45,7 @@ font-weight: 100;
     z-index: -1;
 
     background: var(--color-darkblue);
-    background-image: url("../_img/bg.jpg");
+    background-image: url("../static/bg.jpg");
 
     position: fixed;
     background-size: cover;
