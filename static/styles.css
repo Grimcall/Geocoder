@@ -45,7 +45,7 @@ font-weight: 100;
     z-index: -1;
 
     background: var(--color-darkblue);
-    background-image: url("../static/bg.jpg");
+    background-image: url("bg.jpg");
 
     position: fixed;
     background-size: cover;
@@ -68,7 +68,15 @@ font-weight: 100;
 
 } 
 
-  
+.error-msg{
+  color: rgb(226, 63, 63);
+  font-weight: bolder;
+}  
+
+.success-msg{
+  color: rgb(66, 235, 66);
+  font-weight: bolder;
+}
 
 .container{
    

@@ -2,3 +2,5 @@
 pyenv.cfg
 /webfonts
 /_img
+/templates/index2.html
+/templates/ready.html

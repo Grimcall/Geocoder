@@ -1,27 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
+{% block title%}{% endblock %}
+{% block head %}  
+    {{ super() }}
+{% endblock %} 
 
-    <head>
+ 
+{%block content%}        
         
-        <title>Geocoder by Cross</title>
+        <div class="bg-image">
+            <div class="filter-bg"></div>
+        </div>
     
-        <!-- RWB -->
-        <meta charset = "UTF-8">
-        <meta name = "viewport" content ="width=device-width, initial-scale = 1">
-        <meta http-equiv="X-UA-Compatible" content = "ie-edge">
-        <!-- CSS Links -->
-        <link rel = "stylesheet" href = "../static/styles.css">
-        <link rel = "stylesheet" href = "../static/normalize.css">
-        <link rel = "stylesheet" href = "../static/all.min.css">
-        <!-- Favicon -->
-
-    </head>
-           
-    <body>
-<div class="bg-image">
-    <div class="filter-bg"></div>
-</div>
-     
         <div class = "container">           
 
             <h1>Flexible Geocoder</h1>
@@ -31,40 +20,33 @@
 
             <div class = "form-container">
 
-                <form action = "{{url_for('ready')}}" method = "POST" enctype="multipart/form-data">
+                <form action = '{{url_for("ready")}}' method = "POST" enctype="multipart/form-data">
                     
                     <label id = "upload">Upload your .csv file here. <br></label>    
                         <input type = "file" name ="f_address"> <br>
+
+                        {% with messages = get_flashed_messages() %}
+                            {%if messages %}
+                                {% for msg in messages %}
+                                   <p class = "success-msg">{{ msg }}</p>
+                                {% endfor %}
+                            {% endif %}
+                        {% endwith %}
+
+                        {% if error %}
+                            <p class = "error-msg"><strong>Error: </strong> {{ error }}</p>
+                        {%endif%}
+
                         
                         <p>You may also enter the values yourself. <br>
                         Only the address is required, but the more data the better. <br><br>
                     
-                        It is recommended to format the address <a href ="https://support.google.com/mapcontentpartners/answer/160409?hl=en">this way.</a></p>
-                        
-                    
-                    <div class = "form-input">
-                        <label>Address</label>
-                            <input type = "text" title = "ex. 3666 21st St San Francisco CA 94114 USA" name = "address" placeholder="Enter the address to look up." required>
-                    </div>
-                    
-                    <div class = "form-input">
-                        <label >Name of landmark</label>
-                            <input type = "text" title = "ex. Times Square" name = "landmark" placeholder= "Enter the name of the landmark to look up, if any.">
-                    </div>  
-                    
-                    <div class = "form-input">
-                        <label ># of employees</label>
-                            <input type = "number" title = "ex. 9" name ="employees" placeholder = "Enter the number of employees (optional)">
-                    </div>               
-
-                </form>
-                    
-                        <button type="submit" id="submit" class="submit-button">Submit</button>                    
-                 
+                        It is recommended to format the address <a href ="https://support.google.com/mapcontentpartners/answer/160409?hl=en">this way.</a></p>        
+  
+                    <button type="submit" id="submit" class="submit-button">Submit</button>  
+                </form>                                 
             </div>
+        </div>
 
-        </div>      
-
-    </body>
-
-</html>
+{% endblock %}
+ 
