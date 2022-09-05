@@ -16,7 +16,8 @@
             <h1>Flexible Geocoder</h1>
 
             <h3>Returns longitude and latitude of a given location <br>
-                You can either submit a .csv file or introduce the values yourself.</h3>
+                You can either submit a .csv file or WIP(introduce the values yourself). <br><br>
+                CURRENTLY ONLY WORKING FOR CSV. </h3>
 
             <div class = "form-container">
 
@@ -30,6 +31,12 @@
                                 {% for msg in messages %}
                                    <p class = "success-msg">{{ msg }}</p>
                                 {% endfor %}
+                                                              
+                                {% for table in tables %}
+                                    <h2>{{ titles[loop.index] }}</h2>
+                                    {{ table | safe }}
+                                {% endfor %}
+                              
                             {% endif %}
                         {% endwith %}
 
@@ -38,10 +45,10 @@
                         {%endif%}
 
                         
-                        <p>You may also enter the values yourself. <br>
+                        <p>WIP:You may also enter the values yourself. <br>
                         Only the address is required, but the more data the better. <br><br>
                     
-                        It is recommended to format the address <a href ="https://support.google.com/mapcontentpartners/answer/160409?hl=en">this way.</a></p>        
+                        It is recommended to format the address <a href ="https://support.google.com/mapcontentpartners/answer/160409?hl=en">like so.</a></p>        
   
                     <button type="submit" id="submit" class="submit-button">Submit</button>  
                 </form>                                 

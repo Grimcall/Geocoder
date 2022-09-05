@@ -90,15 +90,16 @@ font-weight: 100;
     z-index: 2; */
 
     margin: 3.125rem auto 0 auto;
-    width: 50%; 
+    width: 75%; 
     
     text-align: center;
 
 } 
 
 
+
 .form-container {
-    margin: 0 auto 1.25rem auto;
+    margin: 1.25rem auto 1.25rem auto;
     padding: 2.5rem 2.625rem;
     
     background-color: rgba(8, 9, 32, 0.507);
@@ -107,6 +108,15 @@ font-weight: 100;
     color: white;    
     
     width: 90%;
+  }
+
+  @media screen and (max-width: 1080px) {
+  
+    .container{
+      width: 100%;      
+    }
+    
+
   }
 
 .form-input{
@@ -126,9 +136,6 @@ font-weight: 100;
     width: 100%;
     
     border-radius: 0.4rem;
-
-    
-
 }
 
 .form-input input:focus{
@@ -138,6 +145,11 @@ font-weight: 100;
 
 }
 
+table{
+  overflow-x: auto;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
 
 button {
     width: 100%;
@@ -189,3 +201,21 @@ a:link {
   a:active {
     color: rgb(141, 141, 245);
   } 
+
+  table { 
+    width: 100%; 
+    border-collapse: collapse; 
+  }
+
+
+  th { 
+  
+    font-weight: bold; 
+  }
+
+  td, th { 
+    padding: 6px; 
+    border: 1px solid #ccc; 
+    text-align: left; 
+  }
+
