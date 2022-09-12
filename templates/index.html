@@ -51,10 +51,11 @@
                         It is recommended to format the address <a href ="https://support.google.com/mapcontentpartners/answer/160409?hl=en">like so.</a></p>        
   
                     <button type="submit" id="submit" class="submit-button">Submit</button>  
-                   {% if btn is defined %} 
-                    {% include btn ignore missing %}
-                   {% endif %}
-                </form>                                 
+                
+                </form>    
+                {% if btn is defined %} 
+                {% include btn ignore missing %}
+               {% endif %}                             
             </div>
         </div>
 

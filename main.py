@@ -1,4 +1,5 @@
 from cgitb import text
+from msilib.schema import File
 from msilib.sequence import tables
 from flask import Flask, flash, render_template, request, redirect, url_for, send_file
 from werkzeug.utils import secure_filename
@@ -14,17 +15,17 @@ gloc = Nominatim(user_agent = "cross-geocoder")
 def index():
     return render_template("index.html")
 
-@app.route("/", methods = ['POST'])
+@app.route("/process-table", methods = ['POST'])
 def process(): 
-    global f
+    global file
     if request.method == 'POST': 
         f = request.files['f_address']
         
         #To add: error msg when nothing is sent
-       # if f.filename.endswith(".csv") is False: 
-        #    error = "The file submitted is not in a .csv format. Please try again."
+        if f.filename.endswith(".csv") is False: 
+           error = "The file submitted is not in a .csv format. Please try again."
             
-         #   return render_template("index.html", error = error)
+           return render_template("index.html", error = error)
 
        #Fix: This should flash as soon as the submission goes through, but it doesn't. It does so after the file is already processed, fix.
         flash('File submitted! Processing...')
@@ -33,16 +34,22 @@ def process():
         #df = geocode_df(df)    
 
         #To add: separate between submission and inserting the address yourself.
-        #To add: download function to finish 100%.
-       
-        print(f)
-    
-       
-    return render_template("index.html", tables = [df.to_html(classes = 'ul_table')], titles = [''], btn = "ready.html")
+        
 
-@app.route("/ready")
+        file = "testing" + ".csv"
+        df.to_csv(file, index = False)
+        #file.save(f.filename)
+
+        #ADDED: download function to finish 100%. Shows a type error, but we can fix it later.
+        
+        print(f)
+        
+        return render_template("index.html", tables = [df.to_html(classes = 'ul_table')], titles = [''], btn = "download.html")
+  
+
+@app.route("/download")
 def download():
-    return send_file(f.filename, download_name = "yourfile.csv")
+    return send_file(file, as_attachment = True, download_name = "test.csv")
 
 def geocode_df(dataframe):
     latitude = []
