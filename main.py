@@ -1,7 +1,4 @@
-from cgitb import text
-from msilib.schema import File
-from msilib.sequence import tables
-from flask import Flask, flash, render_template, request, redirect, url_for, send_file
+from flask import Flask, flash, render_template, request, send_file
 from werkzeug.utils import secure_filename
 from geopy.geocoders import Nominatim
 import pandas as pd
@@ -20,37 +17,45 @@ def process():
     global file
     if request.method == 'POST': 
         f = request.files['f_address']
-        
-        #To add: error msg when nothing is sent
-        if f.filename.endswith(".csv") is False: 
-           error = "The file submitted is not in a .csv format. Please try again."
+        try:
             
-           return render_template("index.html", error = error)
+            #ADDED: error msg when nothing is sent
+            if f.filename == '':
+                error = "No file submitted."
+                
+                return render_template("index.html", error = error)
+            #To add: processing message / loading bar
+            if f.filename.endswith(".csv") is False: 
+                error = "The file submitted is not in a .csv format. Please try again."
+                    
+                return render_template("index.html", error = error)
 
-       #Fix: This should flash as soon as the submission goes through, but it doesn't. It does so after the file is already processed, fix.
-        flash('File submitted! Processing...')
-       
-        df = pd.read_csv(f)
-        #df = geocode_df(df)    
-
-        #To add: separate between submission and inserting the address yourself.
+            flash('File processed!')
         
+            df = pd.read_csv(f)
+            #df = geocode_df(df)    
 
-        file = "testing" + ".csv"
-        df.to_csv(file, index = False)
-        #file.save(f.filename)
+            #To fix: adjust for geocoder timed out. maybe do manual geocoding?
+            #To add: separate between submission and inserting the address yourself.
+            
+            file = secure_filename("testing" + ".csv") #Name goes here.
+            df.to_csv(file, index = False)
+            return render_template("index.html", tables = [df.to_html(classes = 'ul_table')], titles = [''], btn = "download.html")
+        
+        except Exception as e:
+            return render_template("index.html", error = str(e))
+            
+#ADDED: 
+# download function. technically this was the only req, but i wanna perfect this.       
+# error message when file != csv.
+# success msg.        
 
-        #ADDED: download function to finish 100%. Shows a type error, but we can fix it later.
-        
-        print(f)
-        
-        return render_template("index.html", tables = [df.to_html(classes = 'ul_table')], titles = [''], btn = "download.html")
-  
 
 @app.route("/download")
 def download():
     return send_file(file, as_attachment = True, download_name = "test.csv")
 
+#Funct for geocoding using libraries. switch to manual geoc to avoid timeout error?
 def geocode_df(dataframe):
     latitude = []
     longitude = []
